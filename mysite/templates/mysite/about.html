@@ -41,6 +41,11 @@
                         <i class="fab fa-instagram fa-lg rounded btn-danger icon"></i>
                     </a>
                     {% endif %}
+                    {% if profile_data.slack %}
+                    <a href="{{ profile_data.slack }}" target="_blank">
+                        <i class="fab fa-slack fa-lg rounded btn-danger icon"></i>
+                    </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -92,12 +97,12 @@
 <h3 class="mb-4">Technical</h3>
 <div class="mb-5">
     <div class="row">
-        {% for Technical in Technical_data %}
+        {% for technical in technical_data %}
         <div class="col-6 col-md3">
-            <h5 class="mb-0">{{ Technical.name }}<span class="small.secondary"> - {{ Technical.level }}</span></h5>
+            <h5 class="mb-0">{{ technical.name }}<span class="small.secondary"> - {{ technical.level }}</span></h5>
             <div class="d-flex flex-row">
                 <div class="star-rating">
-                    <div class="star-rating-star" style="width: {{ Technical.percentage }}%">★★★★★</div>
+                    <div class="star-rating-star" style="width: {{ technical.percentage }}%">★★★★★</div>
                     <div class="star-rating-back">★★★★★</div>
                 </div>
             </div>

@@ -19,6 +19,7 @@ class Profile(models.Model):
         'facebook', max_length=100, null=True, blank=True)
     instagram = models.CharField(
         'instagram', max_length=100, null=True, blank=True)
+    slack = models.CharField('slack', max_length=100, null=True, blank=True)
     topimage = models.ImageField(upload_to='images', verbose_name='トップ画像')
     subimage = models.ImageField(upload_to='images', verbose_name='サブ画像')
 
