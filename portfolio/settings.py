@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
 # ALLOWED_HOSTS = ["localhost", "3.114.160.155", "[::1]"]
-ALLOWED_HOSTS = ["127.0.0.1", ".herokuapp.com"]
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
