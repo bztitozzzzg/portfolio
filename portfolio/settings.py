@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-from .settings_local import *
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -161,6 +160,7 @@ if not DEBUG:
     # Static files (CSS, JavaScript, Images)
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     STATIC_URL = "/static/"
+    MEDIA_URL = "/media/"
 
     # Extra places for collectstatic to find static files.
     STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
