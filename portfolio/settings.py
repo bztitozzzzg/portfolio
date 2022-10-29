@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,13 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = "django-insecure-0ii@(%a&+$$r4r*4#if)+dc%y9)@h!v+=n-=hq*s)6pbtpj1(t"
-SECRET_KEY = "y5f2(_*5$sz!@z08*0v#i5fc36x@_7*6=7s@_wedxgxacjud0("
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # ALLOWED_HOSTS = ["localhost", "3.114.160.155", "[::1]"]
-ALLOWED_HOSTS = ["localhost", "tito-portfolio.herokuapp.com"]
+ALLOWED_HOSTS = ["127.0.0.1", ".herokuapp.com"]
 
 # Application definition
 
@@ -51,6 +51,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "portfolio.urls"
@@ -83,7 +84,8 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES["default"].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -119,7 +121,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -149,6 +151,9 @@ except ImportError:
     pass
 
 if not DEBUG:
+    # SECRET_KEY
+    SECRET_KEY = os.environ("SECRET_KEY")
+
     # Heroku settings
 
     # staticの設定
