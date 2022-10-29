@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
 # ALLOWED_HOSTS = ["localhost", "3.114.160.155", "[::1]"]
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["tito-portfolio.herokuapp.com"]
 
 # Application definition
 
