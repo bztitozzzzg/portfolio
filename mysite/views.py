@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.mail import BadHeaderError, EmailMessage
 from django.http import HttpResponse
 import textwrap
+
 # Create your views here.
 
 
@@ -19,12 +20,13 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
         profile_data = Profile.objects.all()
         if profile_data.exists():
-            profile_data = profile_data.order_by('-id')[0]
-        work_data = Work.objects.order_by('-id')
-        return render(request, 'mysite/index.html', {
-            'profile_data': profile_data,
-            'work_data': work_data
-        })
+            profile_data = profile_data.order_by("-id")[0]
+        work_data = Work.objects.order_by("-id")
+        return render(
+            request,
+            "mysite/index.html",
+            {"profile_data": profile_data, "work_data": work_data},
+        )
 
 
 class DetailView(View):
@@ -36,10 +38,8 @@ class DetailView(View):
         """
         作品データを取得
         """
-        work_data = Work.objects.get(id=self.kwargs['pk'])
-        return render(request, 'mysite/detail.html', {
-            'work_data': work_data
-        })
+        work_data = Work.objects.get(id=self.kwargs["pk"])
+        return render(request, "mysite/detail.html", {"work_data": work_data})
 
 
 class AboutView(View):
@@ -56,18 +56,22 @@ class AboutView(View):
         """
         profile_data = Profile.objects.all()
         if profile_data.exists():
-            profile_data = profile_data.order_by('-id')[0]
-        experience_data = Experience.objects.order_by('-id')
-        education_data = Education.objects.order_by('-id')
-        software_data = Software.objects.order_by('-id')
-        technical_data = Technical.objects.order_by('-id')
-        return render(request, 'mysite/about.html', {
-            'profile_data': profile_data,
-            'experience_data': experience_data,
-            'education_data': education_data,
-            'software_data': software_data,
-            'technical_data': technical_data,
-        })
+            profile_data = profile_data.order_by("-id")[0]
+        experience_data = Experience.objects.order_by("-id")
+        education_data = Education.objects.order_by("-id")
+        software_data = Software.objects.order_by("-id")
+        technical_data = Technical.objects.order_by("-id")
+        return render(
+            request,
+            "mysite/about.html",
+            {
+                "profile_data": profile_data,
+                "experience_data": experience_data,
+                "education_data": education_data,
+                "software_data": software_data,
+                "technical_data": technical_data,
+            },
+        )
 
 
 class ContactView(View):
@@ -83,25 +87,24 @@ class ContactView(View):
         お問い合わせデータを取得
         ページ表示にコールされる
         """
-        form = ContactForm(request.POST or None)
-        return render(request, 'mysite/contact.html', {
-            'form': form
-        })
+        form = ContactForm(request.post or None)
+        return render(request, "mysite/contact.html", {"form": form})
 
     def post(self, request, *args, **kwargs):
         """post関数
 
         お問い合わせデータをサーバに送信
         """
-        form = ContactForm(request.POST or None)
+        form = ContactForm(request.post or None)
 
         # フォーム内容が正しいかを判断
         if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
-            subject = 'お問い合わせありがとうございます。'
-            contact = textwrap.dedent('''
+            name = form.cleaned_data["name"]
+            email = form.cleaned_data["email"]
+            message = form.cleaned_data["message"]
+            subject = "お問い合わせありがとうございます。"
+            contact = textwrap.dedent(
+                """
                 ※このメールはシステムからの自動返信です。
 
                 {name} 様
@@ -128,26 +131,28 @@ class ContactView(View):
                 Thank you for your inquiry.
                 We have received inquiries with the above contents.
                 We will check the contents and reply to you, so please be patient.
-                ''').format(
-                name=name,
-                email=email,
-                message=message
-            )
+                """
+            ).format(name=name, email=email, message=message)
             to_list = [email]
             # 自分のメールアドレスをBccに追加
             bcc_list = [settings.EMAIL_HOST_USER]
 
             try:
                 message = EmailMessage(
-                    subject=subject, body=contact, to=to_list, bcc=bcc_list)
+                    subject=subject, body=contact, to=to_list, bcc=bcc_list
+                )
                 # メールを送信
                 message.send()
             except BadHeaderError:
-                return HttpResponse('無効なヘッダが検出されました。')
+                return HttpResponse("無効なヘッダが検出されました。")
 
-            return redirect('index')
+            return redirect("index")
 
-        return render(request, 'mysite/contact.html', {
-            # フォーム画面に不備があった場合、空のフォーム画面を表示
-            'form': form
-        })
+        return render(
+            request,
+            "mysite/contact.html",
+            {
+                # フォーム画面に不備があった場合、空のフォーム画面を表示
+                "form": form
+            },
+        )
