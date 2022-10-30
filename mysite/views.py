@@ -87,7 +87,7 @@ class ContactView(View):
         お問い合わせデータを取得
         ページ表示にコールされる
         """
-        form = ContactForm(request.post or None)
+        form = ContactForm(request.POST or None)
         return render(request, "mysite/contact.html", {"form": form})
 
     def post(self, request, *args, **kwargs):
@@ -95,7 +95,7 @@ class ContactView(View):
 
         お問い合わせデータをサーバに送信
         """
-        form = ContactForm(request.post or None)
+        form = ContactForm(request.POST or None)
 
         # フォーム内容が正しいかを判断
         if form.is_valid():
@@ -146,7 +146,7 @@ class ContactView(View):
             except BadHeaderError:
                 return HttpResponse("無効なヘッダが検出されました。")
 
-            return redirect("index")
+            return redirect("namespace:''", name="index")
 
         return render(
             request,
