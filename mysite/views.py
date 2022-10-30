@@ -146,7 +146,7 @@ class ContactView(View):
             except BadHeaderError:
                 return HttpResponse("無効なヘッダが検出されました。")
 
-            return redirect("namespace:''", name="index")
+            return redirect("index")
 
         return render(
             request,
