@@ -141,7 +141,7 @@ except ImportError:
 
 if not DEBUG:
     # SECRET_KEY
-    SECRET_KEY = os.environ("SECRET_KEY")
+    SECRET_KEY = os.environ["SECRET_KEY"]
 
     # Heroku settings
 
