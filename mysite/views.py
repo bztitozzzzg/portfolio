@@ -143,7 +143,7 @@ class ContactView(View):
             recaptcha_response = request.POST.get("g-recaptcha-response")
             url = "https://www.google.com/recaptcha/api/siteverify"
             values = {
-                "secret": settings.RECAPTCHA_PRIVATE_KEY,
+                "secret": settings.RECAPTCHA_SECRET_KEY,
                 "response": recaptcha_response,
             }
             data = urllib.parse.urlencode(values).encode()
