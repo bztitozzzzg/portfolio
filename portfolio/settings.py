@@ -40,7 +40,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "mysite",
     "widget_tweaks",
+    "captcha",
 ]
+
+# reCAPTCHA
+RECAPTCHA_PUBLIC_KEY = "6Lf1b8giAAAAABNKx6RNeI8C_9oo0qBDNS-nUGAj"
+RECAPTCHA_PRIVATE_KEY = "6Lf1b8giAAAAAAUYvL4nzxlMN-EJhxnOf9SdG9z0"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
