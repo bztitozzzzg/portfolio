@@ -1,6 +1,7 @@
+from django import forms
+from django.utils.translation import gettext_lazy as _
 from snowpenguin.django.recaptcha2.fields import ReCaptchaField
 from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
-from django import forms
 
 
 class ContactForm(forms.Form):
