@@ -144,8 +144,6 @@ if not DEBUG:
     # SECRET_KEY
     SECRET_KEY = os.environ["SECRET_KEY"]
 
-    # reCAPTCHA_SECRET_KEY
-    RECAPTCHA_SECRET_KEY = os.environ["RECAPTCHA_SECRET_KEY"]
     # Heroku settings
 
     # staticの設定
