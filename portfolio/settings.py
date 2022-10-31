@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "mysite",
     "widget_tweaks",
-    "captcha",
+    "snowpenguin.django.recaptcha2",
 ]
 
 # reCAPTCHA
