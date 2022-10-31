@@ -43,10 +43,6 @@ INSTALLED_APPS = [
     # "snowpenguin.django.recaptcha2",
 ]
 
-# reCAPTCHA
-RECAPTCHA_SITE_KEY = "6Lf1b8giAAAAABNKx6RNeI8C_9oo0qBDNS-nUGAj"
-RECAPTCHA_SECRET_KEY = "6Lf1b8giAAAAAAUYvL4nzxlMN-EJhxnOf9SdG9z0"
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -136,16 +132,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # 開発環境用メール設定
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-# 本番環境用メール設定
-"""
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "bztitozzzzg@gmail.com"
-EMAIL_HOST_PASSWORD = "zawmmyhpgykocsyx"
-EMAIL_USE_TLS = True
-"""
-
 DEBUG = False
 
 try:
@@ -158,6 +144,8 @@ if not DEBUG:
     # SECRET_KEY
     SECRET_KEY = os.environ["SECRET_KEY"]
 
+    # reCAPTCHA_SECRET_KEY
+    RECAPTCHA_SECRET_KEY = os.environ["RECAPTCHA_SECRET_KEY"]
     # Heroku settings
 
     # staticの設定

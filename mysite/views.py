@@ -5,9 +5,7 @@ from .models import Profile, Work, Experience, Education, Software, Technical
 from django.conf import settings
 from django.core.mail import BadHeaderError, EmailMessage
 from django.http import HttpResponse
-import json
 import textwrap
-import urllib
 
 # Create your views here.
 
@@ -139,26 +137,12 @@ class ContactView(View):
             # 自分のメールアドレスをBccに追加
             bcc_list = [settings.EMAIL_HOST_USER]
 
-            """ Begin reCAPTCHA validation """
-            recaptcha_response = request.POST.get("g-recaptcha-response")
-            url = "https://www.google.com/recaptcha/api/siteverify"
-            values = {
-                "secret": settings.RECAPTCHA_SECRET_KEY,
-                "response": recaptcha_response,
-            }
-            data = urllib.parse.urlencode(values).encode()
-            req = urllib.request.Request(url, data=data)
-            response = urllib.request.urlopen(req)
-            result = json.loads(response.read().decode())
-            """ End reCAPTCHA validation """
-
             try:
                 message = EmailMessage(
                     subject=subject, body=contact, to=to_list, bcc=bcc_list
                 )
                 # メールを送信
-                if result["success"]:
-                    message.send()
+                message.send()
 
             except BadHeaderError:
                 return HttpResponse("無効なヘッダが検出されました。")
