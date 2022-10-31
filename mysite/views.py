@@ -5,7 +5,6 @@ from .models import Profile, Work, Experience, Education, Software, Technical
 from django.conf import settings
 from django.core.mail import BadHeaderError, EmailMessage
 from django.http import HttpResponse
-from django.utils.translation import gettext_lazy as _
 import json
 import textwrap
 import urllib
