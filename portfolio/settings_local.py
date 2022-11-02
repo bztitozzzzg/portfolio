@@ -11,7 +11,13 @@ EMAIL_HOST_PASSWORD = ""
 EMAIL_USE_TLS = True
 """
 SECRET_KEY = "y5f2(_*5$sz!@z08*0v#i5fc36x@_7*6=7s@_wedxgxacjud0("
-# reCAPTCHA
-RECAPTCHA_SITE_KEY = ""
-RECAPTCHA_SECRET_KEY = ""
-DEBUG = True
+
+# Database
+# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
