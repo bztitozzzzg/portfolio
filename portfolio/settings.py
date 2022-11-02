@@ -143,6 +143,9 @@ except ImportError:
 if not DEBUG:
     # Heroku settings
 
+    # SECRET_KEYの設定
+    SECRET_KEY = os.environ["SECRET_KEY"]
+
     # staticの設定
     import os
     import django_heroku
