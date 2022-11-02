@@ -7,3 +7,4 @@ urlpatterns = [
     path('about/', views.AboutView.as_view(), name='about'),
     path('contact/', views.ContactView.as_view(), name='contact'),
 ]
+handler500 = views.my_customized_server_error
