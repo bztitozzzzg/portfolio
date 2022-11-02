@@ -162,7 +162,7 @@ MIDDLEWARE += [
 ]
 
 # HerokuのConfigを読み込み
-django_heroku.settings(locals())
+django_heroku.settings(locals(), secret_key=True)
 
 """
 if not DEBUG:
