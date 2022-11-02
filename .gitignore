@@ -1,1 +1,5 @@
-/portfolio/settings_local.py
+settings_local.py
+staticfiles/
+db.sqlite3
+requirements.txt
+runtime.txt
