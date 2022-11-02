@@ -144,7 +144,7 @@ if not DEBUG:
     # Heroku settings
 
     # SECRET_KEYの設定
-    SECRET_KEY = os.environ["SECRET_KEY"]
+    SECRET_KEY = os.environ.get("SECRET_KEY")
 
     # staticの設定
     import os
