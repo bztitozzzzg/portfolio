@@ -132,7 +132,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
-DEBUG = False
+# DEBUG = False
 
 try:
     # 存在する場合、ローカルの設定読み込み
